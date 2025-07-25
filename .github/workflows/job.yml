@@ -1,0 +1,57 @@
+name : Ebay Product Extract Using BrowseAPI
+
+on:
+  schedule:
+    - cron: '25 12 * * *' # runs everyday at 25 past 12
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  extract-product:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. This step checks out a copy of your repository.
+      - name: check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # default true, but explicit is good
+
+      # 2. Install uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6  
+        with:
+          # Install a specific version of uv.
+          version: "0.7.21"
+
+      # 3. Install python
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      # 4. Install the project dependecies.
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      # 5. This step runs a script to extract product from amazon.
+      - name: Use search_items script
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+        run: uv run main.py
+
+      # 6. Commit and push the changes (If CSV Updated)
+      - name: Commit and push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ebay_products.csv
+          git commit -m "chore: update CSV from schedule job" || echo "No changes to commit"
+          git push
+ 
+
+
+      
+
+    
