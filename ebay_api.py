@@ -158,13 +158,19 @@ def write_to_csv(csv_name: str):
                         writer.writeheader()
                     writer.writerow(info)
                 print(f"Fetched {len(summaries)} items for category {cat_id}")
+            except requests.exceptions.HTTPError as http_err:
+                if http_err.response.status_code == 429:
+                    print("Rate limit reached, stopping early.")
+                else:
+                    raise
             except Exception as e:
                 print(f"Error fetching items for category {cat_id}: {e}")
-
+                continue
 
 def main():
-    write_to_csv("ebay_products.csv")
-    print("All the products data have been saved to CSV file.")
-
-    
-
+    try:
+        write_to_csv("ebay_products.csv")
+        print("✅ All the products data have been saved to CSV file.")
+    except Exception as e:
+        print(f"⚠️ Script ended early due to error: {e}")
+        print("✅ Partial data has still been saved to CSV file.")
