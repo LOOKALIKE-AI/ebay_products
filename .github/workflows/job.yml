@@ -2,7 +2,7 @@ name : Ebay Product Extract Using BrowseAPI
 
 on:
   schedule:
-    - cron: '25 12 * * *' # runs everyday at 25 past 12
+    - cron: '25 0 * * *' # runs everyday at 25 past 12
   workflow_dispatch:
   repository_dispatch:
 
