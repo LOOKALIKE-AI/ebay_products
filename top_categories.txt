@@ -1,0 +1,35 @@
+Top-level categories for eBay Italy:
+1 - Collezionismo
+63 - Fumetti e memorabilia
+99 - Altre categorie
+220 - Giocattoli e modellismo *
+260 - Francobolli
+267 - Libri e riviste
+281 - Orologi e gioielli *
+293 - TV, audio e video
+353 - Arte e antiquariato
+619 - Strumenti musicali
+625 - Fotografia e video
+888 - Sport e viaggi *
+1249 - Videogiochi e console
+1293 - Nautica e imbarcazioni
+1305 - Biglietti ed eventi
+2984 - Infanzia e premaman *
+9800 - Auto e moto: veicoli
+11116 - Monete e banconote
+11232 - Film e DVD
+11233 - Musica, CD e vinili
+11450 - Abbigliamento e accessori *
+11700 - Casa, arredamento e bricolage *
+12576 - Commercio, ufficio e industria
+14308 - Cibi e bevande
+14339 - Hobby creativi
+15032 - Telefonia fissa e mobile *
+20710 - Elettrodomestici
+26395 - Bellezza e salute *
+58058 - Informatica
+131090 - Auto e moto: ricambi e accessori
+159912 - Giardino e arredamento esterni *
+
+
+category_ids = ['220', '281', '888', '2984', '11450', '11700', '15032', '26395', '159912']
