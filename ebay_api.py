@@ -118,7 +118,8 @@ class GetEbayproducts:
             "currency": item.get("price", {}).get("currency", ""),
             "categories": categories.get("categoryName", "") if categories else "",
             "product_link": f"{item.get('itemWebUrl', '')}&campid={campid}",
-            "description": item.get("title", "")
+            "description": item.get("title", ""),
+            "availability": item.get("availability", 1)
         }
 
     # -------------------------------
