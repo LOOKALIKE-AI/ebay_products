@@ -170,8 +170,12 @@ class GetEbayproducts:
                     if http_err.response.status_code == 429:
                         print("Rate limit reached, stopping early.")
                         break
+                    elif http_err.response.status_code == 500:
+                        print(f"Internal server error (500) for category {cat_id}, skipping.")
+                        continue  # skip and continue with the next category
                     else:
-                        raise
+                        print(f"HTTP error {http_err.response.status_code} for category {cat_id}, skipping.")
+                        continue
                 except Exception as e:
                     print(f"Error fetching items for category {cat_id}: {e}")
                     continue
